@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+// Modified by Elehobica, 2021
+
 #ifndef _PICO_AUDIO_H
 #define _PICO_AUDIO_H
 
@@ -37,18 +39,26 @@ extern "C" {
 #define PICO_AUDIO_NOOP 0
 #endif
 
+typedef enum {
+    AUDIO_PCM_FORMAT_S32 = 0,    ///< signed 32bit PCM
+    AUDIO_PCM_FORMAT_S16,        ///< signed 16bit PCM
+    AUDIO_PCM_FORMAT_S8,         ///< signed 8bit PCM
+    AUDIO_PCM_FORMAT_U32,        ///< unsigned 16bit PCM
+    AUDIO_PCM_FORMAT_U16,        ///< unsigned 16bit PCM
+    AUDIO_PCM_FORMAT_U8          ///< unsigned 16bit PCM
+} audio_pcm_format_t;
 
-#define AUDIO_BUFFER_FORMAT_PCM_S16 1          ///< signed 16bit PCM
-#define AUDIO_BUFFER_FORMAT_PCM_S8 2           ///< signed 8bit PCM
-#define AUDIO_BUFFER_FORMAT_PCM_U16 3          ///< unsigned 16bit PCM
-#define AUDIO_BUFFER_FORMAT_PCM_U8 4           ///< unsigned 16bit PCM
+typedef enum {
+    AUDIO_CHANNEL_MONO = 1,
+    AUDIO_CHANNEL_STEREO = 2
+} audio_channel_t;
 
 /** \brief Audio format definition
  */
 typedef struct audio_format {
-    uint32_t sample_freq;      ///< Sample frequency in Hz
-    uint16_t format;           ///< Audio format \ref audio_formats
-    uint16_t channel_count;    ///< Number of channels
+    uint32_t sample_freq; ///< Sample frequency in Hz
+    audio_pcm_format_t pcm_format; ///< Audio format \ref audio_formats
+    audio_channel_t channel_count; ///< Number of channels
 } audio_format_t;
 
 /** \brief Audio buffer format definition
