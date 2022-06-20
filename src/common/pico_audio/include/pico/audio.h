@@ -282,6 +282,11 @@ audio_buffer_t *stereo_s16_to_stereo_s16_consumer_take(audio_connection_t *conne
 /*! \brief \todo
  *  \ingroup pico_audio
  */
+audio_buffer_t *stereo_s32_to_stereo_s32_consumer_take(audio_connection_t *connection, bool block);
+
+/*! \brief \todo
+ *  \ingroup pico_audio
+ */
 audio_buffer_t *mono_to_stereo_consumer_take(audio_connection_t *connection, bool block);
 
 /*! \brief \todo
