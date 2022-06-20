@@ -4,8 +4,20 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+// Modified by Elehobica, 2021
+
 #ifndef _PICO_AUDIO_I2S_H
 #define _PICO_AUDIO_I2S_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+extern void i2s_callback_func();
+
+#ifdef __cplusplus
+}
+#endif
 
 #include "pico/audio.h"
 
@@ -89,21 +101,14 @@ extern "C" {
 #endif
 #endif
 
-#ifndef PICO_AUDIO_I2S_MONO_INPUT
-#define PICO_AUDIO_I2S_MONO_INPUT 0
-#endif
-#ifndef PICO_AUDIO_I2S_MONO_OUTPUT
-#define PICO_AUDIO_I2S_MONO_OUTPUT 0
-#endif
-
 #ifndef PICO_AUDIO_I2S_DATA_PIN
 //#warning PICO_AUDIO_I2S_DATA_PIN should be defined when using AUDIO_I2S
-#define PICO_AUDIO_I2S_DATA_PIN 28
+#define PICO_AUDIO_I2S_DATA_PIN 18
 #endif
 
 #ifndef PICO_AUDIO_I2S_CLOCK_PIN_BASE
 //#warning PICO_AUDIO_I2S_CLOCK_PIN_BASE should be defined when using AUDIO_I2S
-#define PICO_AUDIO_I2S_CLOCK_PIN_BASE 26
+#define PICO_AUDIO_I2S_CLOCK_PIN_BASE 16
 #endif
 
 // todo this needs to come from a build config
@@ -120,11 +125,22 @@ typedef struct audio_i2s_config {
 /** \brief Set up system to output I2S audio
  * \ingroup pico_audio_i2s
  *
- * \param intended_audio_format \todo
+ * \param i2s_audio_format \todo
  * \param config The configuration to apply.
  */
-const audio_format_t *audio_i2s_setup(const audio_format_t *intended_audio_format,
+const audio_format_t *audio_i2s_setup(const audio_format_t *i2s_input_audio_format, const audio_format_t *i2s_output_audio_format,
                                                const audio_i2s_config_t *config);
+
+
+/** \brief End up system to output I2S audio
+ * \ingroup pico_audio_i2s
+ *
+ */
+void audio_i2s_end();
+/*
+ * \param config The configuration to apply.
+void audio_i2s_end(const audio_i2s_config_t *config);
+*/
 
 
 /** \brief \todo
@@ -152,6 +168,7 @@ bool audio_i2s_connect(audio_buffer_pool_t *producer);
  * \param producer
  */
 bool audio_i2s_connect_s8(audio_buffer_pool_t *producer);
+bool audio_i2s_connect_extra(audio_buffer_pool_t *producer, bool buffer_on_give, uint buffer_count, uint samples_per_buffer, audio_connection_t *connection);
 
 /** \brief \todo
  * \ingroup pico_audio_i2s
