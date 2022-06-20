@@ -277,7 +277,7 @@ audio_buffer_t *mono_s8_to_mono_consumer_take(audio_connection_t *connection, bo
 /*! \brief \todo
  *  \ingroup pico_audio
  */
-audio_buffer_t *stereo_to_stereo_consumer_take(audio_connection_t *connection, bool block);
+audio_buffer_t *stereo_s16_to_stereo_s16_consumer_take(audio_connection_t *connection, bool block);
 
 /*! \brief \todo
  *  \ingroup pico_audio
@@ -292,7 +292,12 @@ audio_buffer_t *mono_s8_to_stereo_consumer_take(audio_connection_t *connection, 
 /*! \brief \todo
  *  \ingroup pico_audio
  */
-void stereo_to_stereo_producer_give(audio_connection_t *connection, audio_buffer_t *buffer);
+void stereo_s16_to_stereo_s16_producer_give(audio_connection_t *connection, audio_buffer_t *buffer);a
+
+/*! \brief \todo
+ *  \ingroup pico_audio
+ */
+void stereo_s32_to_stereo_s32_producer_give(audio_connection_t *connection, audio_buffer_t *buffer);
 
 // not worth a separate header for now
 typedef struct __packed pio_audio_channel_config {

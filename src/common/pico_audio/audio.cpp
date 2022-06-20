@@ -231,9 +231,12 @@ audio_buffer_t *mono_to_mono_consumer_take(audio_connection_t *connection, bool 
     return consumer_pool_take<Mono<FmtS16>, Mono<FmtS16>>(connection, block);
 }
 
-// todo rename this - this is s16 to s16
-audio_buffer_t *stereo_to_stereo_consumer_take(audio_connection_t *connection, bool block) {
-    return consumer_pool_take<Stereo<FmtS16>, Stereo<FmtS16>>(connection, block);
+audio_buffer_t *stereo_s16_to_stereo_s16_consumer_take(audio_connection_t *connection, bool block) {
+     return consumer_pool_take<Stereo<FmtS16>, Stereo<FmtS16>>(connection, block);
+}
+
+audio_buffer_t *stereo_s32_to_stereo_s32_consumer_take(audio_connection_t *connection, bool block) {
+    return consumer_pool_take<Stereo<FmtS32>, Stereo<FmtS32>>(connection, block);
 }
 
 // todo rename this - this is s16 to s16
@@ -249,6 +252,6 @@ audio_buffer_t *mono_s8_to_stereo_consumer_take(audio_connection_t *connection, 
     return consumer_pool_take<Stereo<FmtS16>, Mono<FmtS8>>(connection, block);
 }
 
-void stereo_to_stereo_producer_give(audio_connection_t *connection, audio_buffer_t *buffer) {
-    return producer_pool_blocking_give<Stereo<FmtS16>, Stereo<FmtS16>>(connection, buffer);
+void stereo_s32_to_stereo_s32_producer_give(audio_connection_t *connection, audio_buffer_t *buffer) {
+    return producer_pool_blocking_give<Stereo<FmtS32>, Stereo<FmtS32>>(connection, buffer);
 }
