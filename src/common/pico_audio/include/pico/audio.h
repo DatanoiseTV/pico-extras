@@ -292,7 +292,7 @@ audio_buffer_t *mono_s8_to_stereo_consumer_take(audio_connection_t *connection, 
 /*! \brief \todo
  *  \ingroup pico_audio
  */
-void stereo_s16_to_stereo_s16_producer_give(audio_connection_t *connection, audio_buffer_t *buffer);a
+void stereo_s16_to_stereo_s16_producer_give(audio_connection_t *connection, audio_buffer_t *buffer);
 
 /*! \brief \todo
  *  \ingroup pico_audio
